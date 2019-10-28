@@ -1,0 +1,23 @@
+@page
+{
+  size: 210mm 297mm;
+  margin-top: 1.0cm;
+  margin-bottom: 1.0cm;
+  margin-left: 1.5cm;
+  margin-right: 1.0cm;
+  @bottom-right
+    {
+        content: "стр. " counter(page) " из " counter(pages);
+        font-family: ConfluenceInstalledFont, Helvetica, Arial, sans-serif;
+        font-size: 8pt;
+    }
+}
+h1 {
+font-size: 24px;
+} 
+h2 {
+font-size: 16px;
+}
+h3 {
+font-size: 14px;
+}
