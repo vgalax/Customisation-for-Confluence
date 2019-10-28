@@ -1,0 +1,24 @@
+## Macro title: UI Term Link
+## Description: Добавление ссылки на термин
+## Category: Навигация
+## Macro has a body: N
+## Body processing: Selected body processing option
+## Output: Selected output option
+##
+## Developed by: В. Галактионов
+## Date created: 15.07.2019
+## Installed by: В. Галактионов
+
+## @param Term:title=Термин|type=string|required=true|desc=Укажите термин для ссылки
+## @param Term2:title=Термин в падеже|type=string|required=false|desc=Укажите термин в падеже для отображения. Сокращения можно не указывать
+
+#set ( $Term2 = $paramTerm2 )
+
+## Проверить наличие термина в падеже, если его нет, то использовать значение параметра Term
+#if ( !$Term2 )
+  #set ( $Term2 = $paramTerm )
+#end
+
+<span class="ui-style-term-link-macro">
+  <a class="term-link-macro" href="#term-$paramTerm">$Term2</a>
+</span>
