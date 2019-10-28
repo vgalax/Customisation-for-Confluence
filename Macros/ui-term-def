@@ -1,0 +1,14 @@
+## Macro title: UI Term Definition
+## Macro has a body: N
+## Body processing: Selected body processing option
+## Output: Selected output option
+##
+## Developed by: В. Галактионов
+## Date created: 15.07.2019
+## Installed by: В. Галактионов
+
+## @param Term:title=Термин|type=string|required=true|desc=Укажите термин
+
+<a data-aui-trigger aria-controls="show-on-hover" href="#show-on-hover-$paramTerm">
+    <span class="ui-style-term-definition-macro" id="term-$paramTerm">$paramTerm</span>
+</a>
