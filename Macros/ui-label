@@ -1,0 +1,21 @@
+## Macro title: UI Label
+## Description: Добавление на страницу метки с гиперссылкой на список страниц с данной меткой
+## Category: Форматирование
+## Macro has a body: N
+##
+## Developed by: Виктор Галактионов
+## Date created: 28/05/2019
+## Installed by: Виктор Галактионов
+
+## Макрос для добавления метки
+## @param Label:title=Метка|type=string|required=true
+## @param Spacekey:title=Пространство. Если не указано иное, используется текущее пространство.|type=spacekey|required=false
+
+#set ( $spacekey = $paramSpacekey )
+
+## Проверка указания ключа пространства. Если не указано иное, используется текущее пространство.
+#if (!$spacekey)
+  #set ($spacekey=$space.key)
+#end
+
+<span><span class="aui-label"><span class="aui-icon aui-icon-small aui-iconfont-tag">Insert</span>&nbsp;<a href="/label/$spacekey/$paramLabel" rel="tag">$paramLabel</a></span></span>
