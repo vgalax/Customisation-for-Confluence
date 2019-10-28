@@ -1,0 +1,114 @@
+## Macro title: Шаблон с метками
+## Description: Макрос для шаблона страницы с метками пространства
+## Caategory: Форматирование
+## Macro has a body: N
+##
+## Developed by: В. Галактионов
+## Date created: 16/09/2019
+## Installed by: В. Галактионов
+
+## Макрос для шаблона страницы с метками пространства
+## @param Spacekey:title=Пространство|desc=Если не указано иное, используется текущее пространство|type=spacekey|required=false
+## @param Label1:title=Первая метка|desc=Например, «data» (без «елочек»). Если не указано, блок не показывается|type=string|required=false
+## @param Label2:title=Вторая метка|desc=Например, «datahub» (без «елочек»). Если не указано, блок не показывается|type=string|required=false
+
+#set ( $Spacekey = $paramSpacekey )
+## Проверка указания ключа пространства. Если не указано иное, используется текущее пространство.
+#if ( !$Spacekey )
+  #set ( $Spacekey = $space.key )
+#end
+
+<h1>Все метки пространства</h1>
+<p class="auto-cursor-target">
+  <ac:structured-macro ac:name="listlabels">
+    <ac:parameter ac:name="spaceKey">
+      <ri:space ri:space-key="$Spacekey"/>
+    </ac:parameter>
+    <ac:parameter ac:name="excludedLabels">not-this-label</ac:parameter>
+  </ac:structured-macro>
+</p>
+
+<p class="auto-cursor-target"><br>
+  <b>Последние использованные метки</b>
+  <ac:structured-macro ac:name="recently-used-labels">
+    <ac:parameter ac:name="title"></ac:parameter>
+    <ac:parameter ac:name="scope">space</ac:parameter>
+    <ac:parameter ac:name="style">list</ac:parameter>
+    <ac:parameter ac:name="count">20</ac:parameter>
+  </ac:structured-macro>
+</p>
+
+##
+## Если метки не указаны, то блок «Анализ меток» не отображаем
+##
+#if ( $!paramLabel1 && $!paramLabel2 )
+  <p><br></p>
+  <ac:structured-macro ac:name="expand">
+    <ac:parameter ac:name="title">Нажмите здесь для раскрытия раздела «Анализ меток»...</ac:parameter>
+    <ac:rich-text-body>
+      <p class="auto-cursor-target"><b>Анализ меток</b></p>
+      <p class="auto-cursor-target"><ac:emoticon ac:name="warning"/> Раздел носит рабочий характер и используется для выверки возможного использования альтернативных меток</p>
+      <div class="aui-group">
+        <div class="aui-item">
+          #if ( $!paramLabel1 )
+            <table class="wrapped">
+              <tbody>
+                <tr>
+                  <td>
+                     <p>
+                       <ac:structured-macro ac:name="ui-label" ac:schema-version="1">
+                         <ac:parameter ac:name="Label">$!paramLabel1</ac:parameter>
+                       </ac:structured-macro>
+                     </p>
+                   </td>
+                   <td>
+                     <p>
+                       <ac:structured-macro ac:name="contentbylabel" ac:schema-version="3">
+                         <ac:parameter ac:name="cql">label = "$!paramLabel1"</ac:parameter>
+                       </ac:structured-macro>
+                     </p>
+                   </td>
+                 </tr>
+               </tbody>
+             </table>
+           #end
+        </div>
+        <div class="aui-item">
+          #if ( $!paramLabel2 )
+            <table class="wrapped">
+              <tbody>
+                <tr>
+                  <td>
+                     <p>
+                       <ac:structured-macro ac:name="ui-label" ac:schema-version="1">
+                         <ac:parameter ac:name="Label">$!paramLabel2</ac:parameter>
+                       </ac:structured-macro>
+                     </p>
+                   </td>
+                   <td>
+                     <p>
+                       <ac:structured-macro ac:name="contentbylabel" ac:schema-version="3">
+                         <ac:parameter ac:name="cql">label = "$!paramLabel2"</ac:parameter>
+                       </ac:structured-macro>
+                     </p>
+                   </td>
+                 </tr>
+               </tbody>
+             </table>
+           #end
+        </div>
+      </div>
+    </ac:rich-text-body>
+  </ac:structured-macro>
+#end
+
+<p><br>
+  <ac:emoticon ac:name="warning"/> Настоящая страница закрыта для комментирования и лайков.
+  <ac:structured-macro ac:name="hideelements-macro" ac:schema-version="1">
+    <ac:parameter ac:name="comments">true</ac:parameter>
+    <ac:parameter ac:name="watch">true</ac:parameter>
+    <ac:parameter ac:name="create">true</ac:parameter>
+    <ac:parameter ac:name="people">true</ac:parameter>
+    <ac:parameter ac:name="likes">true</ac:parameter>
+  </ac:structured-macro>
+</p>
