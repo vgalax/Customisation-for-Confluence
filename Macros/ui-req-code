@@ -1,0 +1,13 @@
+## Macro title: UI REQ Code
+## Macro has a body: N
+## Body processing: Selected body processing option
+## Output: Selected output option
+##
+## Developed by: В. Галактионов
+## Date created: 15.07.2019
+## Installed by: Л. Тимаков
+
+## @param Section:title=Раздел|type=enum|enumValues=INT,DOC,ASM,CNS,OWN,DEP,BRD,PRN,NTF,BPR,ACC,SCR,SEQ,SRV,DEV,NFR,UAT,APN|required=true|desc=Выберите раздел
+## @param Code:title=Код|type=string|required=true|desc=Укажите номер требования
+
+<span class="ui-style-req-definition-macro" id="req-$paramSection$paramCode">$paramSection&nbsp;$paramCode</span></a>
