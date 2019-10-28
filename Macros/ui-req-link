@@ -5,7 +5,7 @@
 ##
 ## Developed by: В. Галактионов
 ## Date created: 15.07.2019
-## Installed by: Л. Тимаков
+## Installed by: В. Галактионов
 
 ## @param Section:title=Раздел|type=enum|enumValues=INT,DOC,ASM,CNS,OWN,DEP,BRD,PRN,NTF,BPR,ACC,SCR,SEQ,SRV,DEV,NFR,UAT,APN|required=true|desc=Выберите раздел
 ## @param Code:title=Код|type=string|required=false|desc=Укажите номер требования
