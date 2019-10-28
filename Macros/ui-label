@@ -2,12 +2,13 @@
 ## Description: Добавление на страницу метки с гиперссылкой на список страниц с данной меткой
 ## Category: Форматирование
 ## Macro has a body: N
+## Body processing: Selected body processing option
+## Output: Selected output option
 ##
 ## Developed by: Виктор Галактионов
 ## Date created: 28/05/2019
 ## Installed by: Виктор Галактионов
 
-## Макрос для добавления метки
 ## @param Label:title=Метка|type=string|required=true
 ## @param Spacekey:title=Пространство. Если не указано иное, используется текущее пространство.|type=spacekey|required=false
 
