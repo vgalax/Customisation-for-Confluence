@@ -1,0 +1,116 @@
+## Macro title: Шаблон мастер-плана
+## Description: Макрос для шаблона страницы с мастер-планом в пространстве «Задачи развития»
+## Category: Форматирование
+## Macro has a body: N
+##
+## Developed by: В. Галактионов
+## Date created: 16/09/2019
+## Installed by: В. Галактионов
+
+## Макрос для шаблона страницы с мастер-планом в пространстве «Задачи развития»
+## @param PlanCode:title=Код плана|desc=Укажите код мастер-плана прописными латинскими буквами, например «CRTT» (без «ёлочек»). Код должен соответствовать указанному в Jira|type=string|required=true
+## @param PlanDescription:title=Наименование плана|desc=Укажите наименование мастер-плана  в Jira прописными латинскими буквами, например «MSH ACCOUNTING» (без «ёлочек»). Наименование должно соответствовать указанному в Jira|type=string|required=true
+## @param PlanURL:title=Ссылка на план|desc=Укажите ссылку на страницу с мастер-планом в Jira, например «https://jira.otpbank.ru:8444/pages/viewpage.action?pageId=96469013» (без «ёлочек»)|type=string|required=false
+## @param PlanOwner:title=Владелец плана|desc=Укажите владельца мастер-плана. Используйте @ для связывания владельца с пользователем. Владелец мастер-плана должно соответствовать владельцу мастер-плана в Jira|type=string|required=true
+
+<ac:structured-macro ac:name="details" ac:schema-version="1">
+  <ac:rich-text-body>
+    <table class="wrapped">
+      <colgroup>
+        <col/>
+        <col/>
+      </colgroup>
+      <tbody>
+
+        <tr>
+          <th>Код мастер-плана</th>
+          <td>
+            <div class="content-wrapper">
+              <p>
+                $paramPlanCode
+              </p>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Мастер-план в JIRA</th>
+          <td>
+           #set ( $JiraPlanURL = $paramPlanURL )
+            #if ( !$paramPlanURL )
+              #set ( $JiraPlanURL = "https://jira.otpbank.ru:8443/browse/$paramPlanCode" )
+            #end
+            <a class="external-link" href="$JiraPlanURL" rel="nofollow">$paramPlanDescription</a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Владелец мастер-плана</th>
+          <td>
+            <div class="content-wrapper">
+              <p>
+                $paramPlanOwner
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ac:rich-text-body>
+</ac:structured-macro>
+
+<h1>Реестр задач в составе Мастер-плана</h1>
+<p style="text-align: right;">
+
+  <ac:structured-macro ac:name="create-from-template" ac:schema-version="1">
+    <ac:parameter ac:name="spaceKey">
+      <ri:space ri:space-key="DT"/>
+    </ac:parameter>
+    <ac:parameter ac:name="templateName">97714183</ac:parameter>
+    <ac:parameter ac:name="templateId">97714183</ac:parameter>
+    <ac:parameter ac:name="title">$paramPlanCode-1111 Описание</ac:parameter>
+    <ac:parameter ac:name="buttonLabel">Создать Задачу со структурной организацией</ac:parameter>
+  </ac:structured-macro>
+
+  <ac:structured-macro ac:name="create-from-template" ac:schema-version="1">
+    <ac:parameter ac:name="spaceKey">
+      <ri:space ri:space-key="DT"/>
+    </ac:parameter>
+    <ac:parameter ac:name="templateName">96108639</ac:parameter>
+    <ac:parameter ac:name="templateId">96108639</ac:parameter>
+    <ac:parameter ac:name="title">$paramPlanCode-1111 Описание</ac:parameter>
+    <ac:parameter ac:name="buttonLabel">Создать Задачу со свободной организацией</ac:parameter>
+  </ac:structured-macro>
+
+</p>
+
+<p style="text-align: right;">См.
+  <ac:link>
+    <ri:page ri:content-title="Ведение пространства «Задачи развития»" ri:space-key="ND"/>
+    <ac:plain-text-link-body><![CDATA[Ведение пространства «Задачи развития»]]></ac:plain-text-link-body>
+  </ac:link>
+</p>
+
+<p>
+  <ac:structured-macro ac:name="detailssummary" ac:schema-version="2">
+    <ac:parameter ac:name="firstcolumn">Задача</ac:parameter>
+    <ac:parameter ac:name="pageSize">50</ac:parameter>
+    <ac:parameter ac:name="sortBy">Title</ac:parameter>
+    <ac:parameter ac:name="label">requirements</ac:parameter>
+    <ac:parameter ac:name="analytics-key">requirements</ac:parameter>
+    <ac:parameter ac:name="cql">label = "msh-task" and label = "$paramPlanCode" and space = currentSpace()</ac:parameter>
+  </ac:structured-macro>
+</p>
+
+<hr/>
+
+<p><br>
+  <ac:emoticon ac:name="warning"/> Настоящая страница закрыта для комментирования и лайков.
+  <ac:structured-macro ac:name="hideelements-macro" ac:schema-version="1">
+    <ac:parameter ac:name="comments">true</ac:parameter>
+    <ac:parameter ac:name="watch">true</ac:parameter>
+    <ac:parameter ac:name="create">true</ac:parameter>
+    <ac:parameter ac:name="people">true</ac:parameter>
+    <ac:parameter ac:name="likes">true</ac:parameter>
+  </ac:structured-macro>
+</p>
